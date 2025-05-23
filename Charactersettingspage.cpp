@@ -17,9 +17,9 @@ CharacterSettingsPage::CharacterSettingsPage(QWidget *parent) : QWidget(parent)
     // 角色形象选择
     QLabel *imageLabel = new QLabel("选择角色形象：", this);
     imageComboBox = new QComboBox(this);
-    imageComboBox->addItem("角色1", ":/images/char1.png");
-    imageComboBox->addItem("角色2", ":/images/char2.png");
-    imageComboBox->addItem("角色3", ":/images/char3.png");
+    imageComboBox->addItem("角色1", ":/new/prefix1/Girl_1.png");
+    imageComboBox->addItem("角色2", ":/new/prefix1/Girl_2.png");
+    imageComboBox->addItem("角色3", ":/new/prefix1/Girl_3.png");
 
     QHBoxLayout *imageLayout = new QHBoxLayout();
     imageLayout->addWidget(imageLabel);

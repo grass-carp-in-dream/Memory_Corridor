@@ -2,6 +2,9 @@
     <qresource prefix="/"/>
     <qresource prefix="/new/prefix1">
         <file alias="monk.png">character0.png</file>
+        <file alias="Girl_1.png">Girl_1.png</file>
+        <file alias="Girl_2.png">Girl_2.png</file>
+        <file alias="Girl_3.png">Girl_3.png</file>
     </qresource>
     <qresource prefix="/new/prefix2"/>
 </RCC>

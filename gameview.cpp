@@ -30,7 +30,7 @@ GameView::GameView(QWidget *parent)
     characterScale = 1.0;
     characterYOffset = 0;
     groundY = 600;   // 假定地面Y坐标600，可按需调整
-    frameWidth = 64; // 假设每帧宽度48像素，按你的资源修改
+    frameWidth = 128; // 假设每帧宽度64像素，按你的资源修改
     frameHeight = 0; // 初始化为0，后续加载时赋值
     currentFacing = FaceRight;
     currentFrame = 0;
@@ -66,7 +66,7 @@ void GameView::initScene()
     }
 
     // 载入角色精灵帧
-    QPixmap spriteSheet(":/new/prefix1/monk.png");
+    QPixmap spriteSheet(":/new/prefix1/Girl_1.png");
     frameHeight = spriteSheet.height();
 
     int frameCount = spriteSheet.width() / frameWidth;
@@ -313,6 +313,7 @@ QGraphicsScene* GameView::getScene() const {
 void GameView::loadFramesAndDisplay()
 {
     PhotoFrameManager frameManager;
+    // 这里的文件路径要改成你们自己保存的json文件的绝对路径
     if (!frameManager.loadFromFile("C:/Users/34893/Desktop/test_memory_corridor_data.json")) {
         qDebug() << "加载相框数据失败";
         return;

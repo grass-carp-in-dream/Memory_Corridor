@@ -167,7 +167,10 @@ release/qrc_backgrounds.cpp: ../../backgrounds.qrc \
 
 release/qrc_characters.cpp: ../../characters.qrc \
 		C:/Qt/6.9.0/mingw_64/bin/rcc.exe \
-		../../character0.png
+		../../Girl_2.png \
+		../../Girl_1.png \
+		../../character0.png \
+		../../Girl_3.png
 	C:\Qt\6.9.0\mingw_64\bin\rcc.exe -name characters --no-zstd ..\..\characters.qrc -o release\qrc_characters.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -4188,7 +4191,9 @@ release/gameview.o: ../../gameview.cpp ../../gameview.h \
 		C:/Qt/6.9.0/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.9.0/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.9.0/mingw_64/include/QtGui/qtextdocument.h \
-		../../PhotoFrameItem.h
+		../../PhotoFrameItem.h \
+		C:/Qt/6.9.0/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.9.0/mingw_64/include/QtWidgets/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\gameview.o ..\..\gameview.cpp
 
 release/main.o: ../../main.cpp ../../mainwindow.h \
