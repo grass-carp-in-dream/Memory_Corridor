@@ -53,7 +53,7 @@ void GameView::initScene()
     scene->setSceneRect(0, 0, 10000, 600);
 
     // 背景图平铺
-    QPixmap bgPixmap(":/new/prefix1/background1.png");
+    QPixmap bgPixmap(":/new/prefix1/background5.png");
     int bgWidth = bgPixmap.width();
 
     int tileCount = static_cast<int>(scene->width() / bgWidth) + 2;
@@ -440,4 +440,39 @@ bool GameView::eventFilter(QObject *watched, QEvent *event)
 
     // 调用基类的 eventFilter 方法处理其他事件
     return QGraphicsView::eventFilter(watched, event);
+}
+
+void GameView::setBackgroundImage(const QString &path) {
+    if (!scene) return;
+
+    scene->clear(); // 清空旧内容（包括背景、角色）
+    qDebug() << "[GameView] setBackgroundImage with:" << path;
+    QPixmap bgPixmap(path);
+    if (bgPixmap.isNull()) {
+        qDebug() << "背景图片加载失败:" << path;
+        return;
+    }
+
+    int bgWidth = bgPixmap.width();
+    int tileCount = static_cast<int>(scene->width() / bgWidth) + 2;
+    int bgYOffset = -500;
+
+    for (int i = 0; i < tileCount; ++i) {
+        QGraphicsPixmapItem *tile = scene->addPixmap(bgPixmap);
+        tile->setZValue(-1);
+        tile->setPos(i * bgWidth, bgYOffset);
+    }
+
+    // 重新添加角色
+    if (!walkFrames.isEmpty()) {
+        characterItem = new QGraphicsPixmapItem(walkFrames[0]);
+        characterItem->setTransformationMode(Qt::SmoothTransformation);
+        characterItem->setTransformOriginPoint(characterItem->boundingRect().center());
+        scene->addItem(characterItem);
+        characterItem->setTransform(QTransform().scale(
+            currentFacing == FaceRight ? characterScale : -characterScale,
+            characterScale));
+        characterItem->setPos(0, groundY - frameHeight * characterScale + characterYOffset);
+        centerOn(characterItem);
+    }
 }

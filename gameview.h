@@ -54,6 +54,7 @@ private slots:
     // 定时器槽函数：切换角色动画帧（走路动画）
     void updateAnimationFrame();
 
+
 private:
     QGraphicsScene *scene;                   // 场景容器，放背景、角色等
     QGraphicsPixmapItem *backgroundItem;     // 背景图项

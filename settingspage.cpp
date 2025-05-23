@@ -6,6 +6,8 @@
 #include <QCheckBox>
 #include <QFileDialog>
 #include <QDebug>
+#include "backgroundsettingspage.h"
+
 
 SettingsPage::SettingsPage(QWidget *parent) : QWidget(parent)
 {
@@ -36,26 +38,13 @@ void SettingsPage::setupUi()
 
 void SettingsPage::setupBackgroundSettings()
 {
-    backgroundSettingsPage = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(backgroundSettingsPage);
+    backgroundSettingsPage = new BackgroundSettingsPage(this);
 
-    QLabel *label = new QLabel(tr("选择背景图片："));
-    QPushButton *chooseButton = new QPushButton(tr("选择图片"));
-
-    layout->addWidget(label);
-    layout->addWidget(chooseButton);
-    layout->addStretch();
-
-    connect(chooseButton, &QPushButton::clicked, this, [=]() {
-        QString fileName = QFileDialog::getOpenFileName(this, tr("选择背景图片"),
-                                                        QString(),
-                                                        tr("图片文件 (*.png *.jpg *.bmp)"));
-        if (!fileName.isEmpty()) {
-            qDebug() << "选择背景图片路径：" << fileName;
-            // TODO: 发送信号或调用接口通知主窗口或游戏页面切换背景
-        }
-    });
+    connect(static_cast<BackgroundSettingsPage*>(backgroundSettingsPage),
+            &BackgroundSettingsPage::backgroundImageChanged,
+            this, &SettingsPage::onBackgroundImageChanged);
 }
+
 
 void SettingsPage::setupSoundSettings()
 {
@@ -154,4 +143,10 @@ void SettingsPage::onCharacterYOffsetChanged(int offset)
 {
     qDebug() << "SettingsPage: Character Y Offset Changed to " << offset;
     emit characterYOffsetChanged(offset);  // 发射信号
+}
+
+void SettingsPage::onBackgroundImageChanged(const QString &path)
+{
+    qDebug() << "SettingsPage: Background Image Changed to " << path;
+    emit backgroundImageChanged(path);  // 转发信号给主窗口或游戏页
 }

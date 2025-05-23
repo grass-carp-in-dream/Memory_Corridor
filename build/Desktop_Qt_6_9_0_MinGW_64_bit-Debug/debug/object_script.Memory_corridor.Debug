@@ -2,6 +2,7 @@ debug/Charactersettingspage.o
 debug/Flowlayout.o
 debug/PhotoFrameManager.o
 debug/albumpage.o
+debug/backgroundsettingspage.o
 debug/dateselectdialog.o
 debug/gamepage.o
 debug/gameview.o
@@ -14,6 +15,7 @@ debug/qrc_characters.o
 debug/moc_Charactersettingspage.o
 debug/moc_ClickableLabel.o
 debug/moc_albumpage.o
+debug/moc_backgroundsettingspage.o
 debug/moc_dateselectdialog.o
 debug/moc_gamepage.o
 debug/moc_gameview.o

@@ -13,6 +13,7 @@ SOURCES += \
     Flowlayout.cpp \
     PhotoFrameManager.cpp \
     albumpage.cpp \
+    backgroundsettingspage.cpp \
     dateselectdialog.cpp \
     gamepage.cpp \
     gameview.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     PhotoFrameItem.h \
     PhotoFrameManager.h \
     albumpage.h \
+    backgroundsettingspage.h \
     dateselectdialog.h \
     gamepage.h \
     gameview.h \

@@ -89,3 +89,11 @@ void GamePage::loadAndDisplayFrames()
     // 调用 GameView 的加载和展示函数
     gameView->loadFramesAndDisplay();
 }
+
+void GamePage::setBackgroundImage(const QString &path)
+{
+    qDebug() << "[GamePage] setBackgroundImage called:" << path;
+    if (gameView) {
+        gameView->setBackgroundImage(path);  // 将背景图传递给 GameView
+    }
+}

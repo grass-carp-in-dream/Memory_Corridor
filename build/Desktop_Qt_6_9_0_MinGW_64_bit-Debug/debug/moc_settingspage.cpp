@@ -47,9 +47,11 @@ template <> constexpr inline auto SettingsPage::qt_create_metaobjectdata<qt_meta
         "scale",
         "characterYOffsetChanged",
         "offset",
+        "backgroundImageChanged",
         "onCharacterImageChanged",
         "onCharacterScaleChanged",
-        "onCharacterYOffsetChanged"
+        "onCharacterYOffsetChanged",
+        "onBackgroundImageChanged"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -65,17 +67,25 @@ template <> constexpr inline auto SettingsPage::qt_create_metaobjectdata<qt_meta
         QtMocHelpers::SignalData<void(int)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 7 },
         }}),
+        // Signal 'backgroundImageChanged'
+        QtMocHelpers::SignalData<void(const QString &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
+        }}),
         // Slot 'onCharacterImageChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QString &)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::QString, 3 },
         }}),
         // Slot 'onCharacterScaleChanged'
-        QtMocHelpers::SlotData<void(double)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(double)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Double, 5 },
         }}),
         // Slot 'onCharacterYOffsetChanged'
-        QtMocHelpers::SlotData<void(int)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 7 },
+        }}),
+        // Slot 'onBackgroundImageChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -103,9 +113,11 @@ void SettingsPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 0: _t->characterImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->characterScaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
         case 2: _t->characterYOffsetChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 3: _t->onCharacterImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->onCharacterScaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 5: _t->onCharacterYOffsetChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->backgroundImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->onCharacterImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 5: _t->onCharacterScaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
+        case 6: _t->onCharacterYOffsetChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 7: _t->onBackgroundImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -115,6 +127,8 @@ void SettingsPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(double )>(_a, &SettingsPage::characterScaleChanged, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(int )>(_a, &SettingsPage::characterYOffsetChanged, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(const QString & )>(_a, &SettingsPage::backgroundImageChanged, 3))
             return;
     }
 }
@@ -138,14 +152,14 @@ int SettingsPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 8;
     }
     return _id;
 }
@@ -166,5 +180,11 @@ void SettingsPage::characterScaleChanged(double _t1)
 void SettingsPage::characterYOffsetChanged(int _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+}
+
+// SIGNAL 3
+void SettingsPage::backgroundImageChanged(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP

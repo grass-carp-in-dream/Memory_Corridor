@@ -77,8 +77,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(albumPage, &AlbumPage::backToGameRequested, this,  [=]() { stackedWidget->setCurrentIndex(2); });
 
 
-
-
     // 加载相框数据
     // 加载相框数据
     // 这里的文件路径要改成你们自己保存的json文件的绝对路径
@@ -129,6 +127,7 @@ void MainWindow::showSettingsPage()
         connect(settingsPage, &SettingsPage::characterImageChanged, this, &MainWindow::onCharacterImageChanged);
         connect(settingsPage, &SettingsPage::characterScaleChanged, this, &MainWindow::onCharacterScaleChanged);
         connect(settingsPage, &SettingsPage::characterYOffsetChanged, this, &MainWindow::onCharacterYOffsetChanged);
+        connect(settingsPage, &SettingsPage::backgroundImageChanged, this, &MainWindow::onBackgroundImageChanged);
     }
 
     settingsPage->show();
@@ -155,6 +154,14 @@ void MainWindow::onCharacterYOffsetChanged(int offset)
     qDebug() << "[MainWindow] onCharacterYOffsetChanged called:" << offset;
     if (gamePage) {
         gamePage->setCharacterYOffset(offset); // 将信号转发到 gamePage
+    }
+}
+
+void MainWindow::onBackgroundImageChanged(const QString &path)
+{
+    qDebug() << "[MainWindow] Background Image Changed to" << path;
+    if (gamePage) {
+        gamePage->setBackgroundImage(path);
     }
 }
 

@@ -34,6 +34,7 @@ signals:
 public slots:
     // 加载相框并显示
     void loadAndDisplayFrames();
+    void setBackgroundImage(const QString &path);
 
 private:
     // 游戏视图对象

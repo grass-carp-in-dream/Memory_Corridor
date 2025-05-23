@@ -43,6 +43,7 @@ public slots:
     void onCharacterImageChanged(const QString &imagePath);
     void onCharacterScaleChanged(double scale);
     void onCharacterYOffsetChanged(int offset);
+    void onBackgroundImageChanged(const QString &path);
 
 private:
     QStackedWidget *stackedWidget;   // 管理主菜单、相册、游戏页切换
