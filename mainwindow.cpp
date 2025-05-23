@@ -1,0 +1,164 @@
+#include "mainwindow.h"
+#include <QPushButton>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QStackedWidget>
+#include <QFont>
+#include <QResizeEvent>
+#include <QDebug>
+#include "albumpage.h"
+#include "settingspage.h"
+#include "PhotoFrameManager.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this->resize(400, 300);
+    normalWindowSize = size();
+
+
+    // 创建堆叠窗口，作为主窗口的中央部件
+    stackedWidget = new QStackedWidget(this);
+    this->setCentralWidget(stackedWidget);
+
+    // 主菜单页面及其布局和控件
+    mainMenuPage = new QWidget(this);
+    QVBoxLayout *menuLayout = new QVBoxLayout(mainMenuPage);
+    menuLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
+
+    themeLabel = new QLabel("回忆长廊");
+    themeLabel->setAlignment(Qt::AlignCenter);
+
+    startButton = new QPushButton("开始");
+    albumButton = new QPushButton("相册");
+    settingsButton = new QPushButton("设置");
+    summaryButton = new QPushButton("总结报告");
+
+    menuLayout->addWidget(themeLabel);
+    menuLayout->addSpacing(30);
+    menuLayout->addWidget(startButton);
+    menuLayout->addWidget(albumButton);
+    menuLayout->addWidget(settingsButton);
+    menuLayout->addWidget(summaryButton);
+
+    // 相册页面和游戏页面
+    albumPage = new AlbumPage(this);
+    gamePage = new GamePage(this);
+
+    // 设置页面指针初始化为空，延迟创建
+    settingsPage = nullptr;
+
+    // 将页面加入堆叠控件
+    stackedWidget->addWidget(mainMenuPage);  // index 0
+    stackedWidget->addWidget(albumPage);     // index 1
+    stackedWidget->addWidget(gamePage);      // index 2
+    stackedWidget->setCurrentIndex(0);
+
+    // 按钮信号连接，切换页面或打开窗口
+    connect(settingsButton, &QPushButton::clicked, this, &MainWindow::showSettingsPage);
+    connect(albumButton, &QPushButton::clicked, this, [=]() { stackedWidget->setCurrentIndex(1); });
+    connect(albumPage, &AlbumPage::backToMainRequested, this, [=]() { stackedWidget->setCurrentIndex(0); });
+    connect(startButton, &QPushButton::clicked, this, [=]() { stackedWidget->setCurrentIndex(2); });
+
+    // 切换页面时处理窗口大小和焦点
+    connect(stackedWidget, &QStackedWidget::currentChanged, this, [=](int index) {
+        if (index == 2) {
+            this->showFullScreen();
+            gamePage->setFocusToGameView();
+        } else {
+            this->showNormal();
+            this->resize(normalWindowSize);
+        }
+    });
+
+    connect(gamePage, &GamePage::backToMainRequested, this, [=]() { stackedWidget->setCurrentIndex(0); });
+    connect(gamePage, &GamePage::showSettingsPage, this, &MainWindow::showSettingsPage);
+    // 主窗口的构造函数中，连接 GamePage 的信号
+    connect(albumPage, &AlbumPage::backToGameRequested, this,  [=]() { stackedWidget->setCurrentIndex(2); });
+
+
+
+
+    // 加载相框数据
+    // 加载相框数据
+    // 这里的文件路径要改成你们自己保存的json文件的绝对路径
+    bool success = m_photoFrameManager.loadFromFile("C:/Users/34893/Desktop/test_memory_corridor_data.json");
+    if (success) {
+        qDebug() << "Photo frames loaded successfully!";
+        gamePage->loadAndDisplayFrames();
+        // 获取所有相框数据
+        const QVector<PhotoFrameData>& photoFrames = m_photoFrameManager.getAllFrames();
+
+        // 遍历并输出每个相框的数据
+        for (const PhotoFrameData &frame : photoFrames) {
+            qDebug() << "Creation Time:" << frame.getCreationTime()
+            << "Date:" << frame.getDate()
+            << "Description:" << frame.getDescription()
+            << "Image Path:" << frame.getImagePath();
+        }
+    } else {
+        qDebug() << "Failed to load photo frames.";
+    }
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    int w = event->size().width();
+
+    QFont titleFont;
+    titleFont.setPointSize(std::max(w / 15, 14));
+
+    QFont btnFont;
+    btnFont.setPointSize(std::max(w / 25, 12));
+
+    themeLabel->setFont(titleFont);
+    startButton->setFont(btnFont);
+    albumButton->setFont(btnFont);
+    settingsButton->setFont(btnFont);
+    summaryButton->setFont(btnFont);
+}
+
+void MainWindow::showSettingsPage()
+{
+    if (!settingsPage) {
+        settingsPage = new SettingsPage(this); // 确保创建 SettingsPage 实例
+        settingsPage->setWindowModality(Qt::ApplicationModal);
+        settingsPage->setWindowFlag(Qt::Window);
+
+        // 在 SettingsPage 创建时连接信号和槽
+        connect(settingsPage, &SettingsPage::characterImageChanged, this, &MainWindow::onCharacterImageChanged);
+        connect(settingsPage, &SettingsPage::characterScaleChanged, this, &MainWindow::onCharacterScaleChanged);
+        connect(settingsPage, &SettingsPage::characterYOffsetChanged, this, &MainWindow::onCharacterYOffsetChanged);
+    }
+
+    settingsPage->show();
+    settingsPage->raise();
+    settingsPage->activateWindow();
+}
+
+void MainWindow::onCharacterImageChanged(const QString &imagePath)
+{
+    if (gamePage) {
+        gamePage->setCharacterImage(imagePath); // 将信号转发到 gamePage
+    }
+}
+
+void MainWindow::onCharacterScaleChanged(double scale)
+{
+    if (gamePage) {
+        gamePage->setCharacterScale(scale); // 将信号转发到 gamePage
+    }
+}
+
+void MainWindow::onCharacterYOffsetChanged(int offset)
+{
+    qDebug() << "[MainWindow] onCharacterYOffsetChanged called:" << offset;
+    if (gamePage) {
+        gamePage->setCharacterYOffset(offset); // 将信号转发到 gamePage
+    }
+}
+
+MainWindow::~MainWindow()
+{
+    // 子窗口会随父窗口自动销毁，不用特别删除
+}
