@@ -180,9 +180,12 @@ debug/qrc_backgrounds.cpp: ../../backgrounds.qrc \
 debug/qrc_characters.cpp: ../../characters.qrc \
 		C:/Qt/6.9.0/mingw_64/bin/rcc.exe \
 		../../Girl_2.png \
+		../../Boy_2.png \
+		../../Boy_1.png \
 		../../Girl_1.png \
 		../../character0.png \
-		../../Girl_3.png
+		../../Girl_3.png \
+		../../Boy_3.png
 	C:\Qt\6.9.0\mingw_64\bin\rcc.exe -name characters --no-zstd ..\..\characters.qrc -o debug\qrc_characters.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h

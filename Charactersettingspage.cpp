@@ -20,6 +20,10 @@ CharacterSettingsPage::CharacterSettingsPage(QWidget *parent) : QWidget(parent)
     imageComboBox->addItem("角色1", ":/new/prefix1/Girl_1.png");
     imageComboBox->addItem("角色2", ":/new/prefix1/Girl_2.png");
     imageComboBox->addItem("角色3", ":/new/prefix1/Girl_3.png");
+    imageComboBox->addItem("角色4", ":/new/prefix1/Boy_1.png");
+    imageComboBox->addItem("角色5", ":/new/prefix1/Boy_2.png");
+    imageComboBox->addItem("角色6", ":/new/prefix1/Boy_3.png");
+
 
     QHBoxLayout *imageLayout = new QHBoxLayout();
     imageLayout->addWidget(imageLabel);

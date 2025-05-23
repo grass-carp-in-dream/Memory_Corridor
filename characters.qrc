@@ -5,6 +5,9 @@
         <file alias="Girl_1.png">Girl_1.png</file>
         <file alias="Girl_2.png">Girl_2.png</file>
         <file alias="Girl_3.png">Girl_3.png</file>
+        <file alias="Boy_1.png">Boy_1.png</file>
+        <file alias="Boy_2.png">Boy_2.png</file>
+        <file alias="Boy_3.png">Boy_3.png</file>
     </qresource>
     <qresource prefix="/new/prefix2"/>
 </RCC>
