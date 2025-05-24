@@ -19,8 +19,7 @@
  * - 相册页面 albumPage （stackedWidget 页面）
  * - 游戏页面 gamePage （stackedWidget 页面）
  *
- * settingsPage 和 characterSettingsPage 不再作为 stackedWidget 的页面，
- * 改成独立的窗口弹出管理（这里只保留指针，实际创建与调用在 cpp 中实现）。
+ * settingsPage 和 characterSettingsPage 不作为 stackedWidget 的页面，而是独立的窗口弹出管理
  *
  * 主要界面控件：
  * - 各种按钮、标签，控制页面切换和功能触发
