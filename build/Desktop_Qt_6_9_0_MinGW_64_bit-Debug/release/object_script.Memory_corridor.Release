@@ -8,6 +8,7 @@ release/gamepage.o
 release/gameview.o
 release/main.o
 release/mainwindow.o
+release/musicsettingspage.o
 release/photoframewidget.o
 release/settingspage.o
 release/qrc_backgrounds.o
@@ -20,5 +21,6 @@ release/moc_dateselectdialog.o
 release/moc_gamepage.o
 release/moc_gameview.o
 release/moc_mainwindow.o
+release/moc_musicsettingspage.o
 release/moc_photoframewidget.o
 release/moc_settingspage.o

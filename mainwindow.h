@@ -10,6 +10,8 @@
 #include "gamepage.h"
 #include "charactersettingspage.h"
 #include "settingspage.h"
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 /*
  * MainWindow 是整个程序的主窗口类，包含：
@@ -40,11 +42,16 @@ protected:
 
 public slots:
     void showSettingsPage();         // 弹出设置窗口槽函数
+    //角色设置信号
     void onCharacterImageChanged(const QString &imagePath);
     void onCharacterScaleChanged(double scale);
     void onCharacterYOffsetChanged(int offset);
+    //背景设置信号
     void onBackgroundImageChanged(const QString &path);
-
+    //音乐设置信号
+    void onBgmTrackChanged(const QString &path);
+    void onBgmVolumeChanged(int volume);
+    void onBgmMuteToggled(bool muted);
 private:
     QStackedWidget *stackedWidget;   // 管理主菜单、相册、游戏页切换
     QWidget *mainMenuPage;            // 主菜单页面
@@ -63,6 +70,8 @@ private:
 
     PhotoFrameManager m_photoFrameManager; // 相框管理（调试用）
     QSize normalWindowSize;           // 记录窗口非全屏大小，方便切换
+    QMediaPlayer *bgmPlayer = nullptr;  // 音乐播放器
+    QAudioOutput* bgmAudioOutput = nullptr;// 音量设置器
 };
 
 #endif // MAINWINDOW_H

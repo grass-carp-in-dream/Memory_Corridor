@@ -97,6 +97,10 @@ MainWindow::MainWindow(QWidget *parent)
     } else {
         qDebug() << "Failed to load photo frames.";
     }
+    // 播放默认BGM
+    // 这里的文件路径要改成你们自己保存的音乐文件的绝对路径
+    QString defaultBgmPath = "C:/Users/34893/Desktop/Memory_Corridor/Memory_corridor/甜美的微笑.mp3";
+    onBgmTrackChanged(defaultBgmPath);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -119,21 +123,39 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::showSettingsPage()
 {
     if (!settingsPage) {
-        settingsPage = new SettingsPage(this); // 确保创建 SettingsPage 实例
+        settingsPage = new SettingsPage(this);
         settingsPage->setWindowModality(Qt::ApplicationModal);
         settingsPage->setWindowFlag(Qt::Window);
 
-        // 在 SettingsPage 创建时连接信号和槽
         connect(settingsPage, &SettingsPage::characterImageChanged, this, &MainWindow::onCharacterImageChanged);
         connect(settingsPage, &SettingsPage::characterScaleChanged, this, &MainWindow::onCharacterScaleChanged);
         connect(settingsPage, &SettingsPage::characterYOffsetChanged, this, &MainWindow::onCharacterYOffsetChanged);
         connect(settingsPage, &SettingsPage::backgroundImageChanged, this, &MainWindow::onBackgroundImageChanged);
+
+
+        connect(settingsPage, &SettingsPage::bgmTrackChanged, this, &MainWindow::onBgmTrackChanged);
+        connect(settingsPage, &SettingsPage::bgmVolumeChanged, this, &MainWindow::onBgmVolumeChanged);
+        connect(settingsPage, &SettingsPage::muteToggled, this, &MainWindow::onBgmMuteToggled);
+        connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status){
+            if (status == QMediaPlayer::EndOfMedia) {
+                qDebug() << "[MainWindow] 检测到 播放结束，重新播放：" ;
+                QString currentPath = bgmPlayer->source().toLocalFile();
+                if (!currentPath.isEmpty()) {
+                    qDebug() << "[MainWindow] 播放结束，重新播放：" << currentPath;
+                    bgmPlayer->setSource(QUrl::fromLocalFile(currentPath));
+                    bgmPlayer->play();
+                }
+            }
+        });
+
     }
 
     settingsPage->show();
     settingsPage->raise();
     settingsPage->activateWindow();
 }
+
+
 
 void MainWindow::onCharacterImageChanged(const QString &imagePath)
 {
@@ -164,6 +186,40 @@ void MainWindow::onBackgroundImageChanged(const QString &path)
         gamePage->setBackgroundImage(path);
     }
 }
+
+void MainWindow::onBgmTrackChanged(const QString &path)
+{
+    qDebug() << "[MainWindow] 播放新的音乐：" << path;
+
+    if (!bgmPlayer) {
+        bgmAudioOutput = new QAudioOutput(this);
+        bgmPlayer = new QMediaPlayer(this);
+        bgmPlayer->setAudioOutput(bgmAudioOutput);
+    }
+
+    bgmPlayer->setSource(QUrl::fromLocalFile(path));
+    bgmPlayer->play();
+}
+
+
+void MainWindow::onBgmVolumeChanged(int volume)
+{
+    if (bgmAudioOutput) {
+        qDebug() << "[MainWindow] 设置音量：" << volume;
+        bgmAudioOutput->setVolume(volume / 100.0);  // 注意 Qt 6 音量是 0.0 ~ 1.0
+    }
+}
+
+
+void MainWindow::onBgmMuteToggled(bool muted)
+{
+    if (bgmAudioOutput) {
+        qDebug() << "[MainWindow] 静音状态：" << muted;
+        bgmAudioOutput->setMuted(muted);
+    }
+}
+
+
 
 MainWindow::~MainWindow()
 {

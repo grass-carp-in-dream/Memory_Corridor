@@ -48,6 +48,11 @@ template <> constexpr inline auto SettingsPage::qt_create_metaobjectdata<qt_meta
         "characterYOffsetChanged",
         "offset",
         "backgroundImageChanged",
+        "bgmVolumeChanged",
+        "volume",
+        "muteToggled",
+        "muted",
+        "bgmTrackChanged",
         "onCharacterImageChanged",
         "onCharacterScaleChanged",
         "onCharacterYOffsetChanged",
@@ -71,20 +76,32 @@ template <> constexpr inline auto SettingsPage::qt_create_metaobjectdata<qt_meta
         QtMocHelpers::SignalData<void(const QString &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 3 },
         }}),
+        // Signal 'bgmVolumeChanged'
+        QtMocHelpers::SignalData<void(int)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 10 },
+        }}),
+        // Signal 'muteToggled'
+        QtMocHelpers::SignalData<void(bool)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 12 },
+        }}),
+        // Signal 'bgmTrackChanged'
+        QtMocHelpers::SignalData<void(const QString &)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
+        }}),
         // Slot 'onCharacterImageChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QString &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::QString, 3 },
         }}),
         // Slot 'onCharacterScaleChanged'
-        QtMocHelpers::SlotData<void(double)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(double)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Double, 5 },
         }}),
         // Slot 'onCharacterYOffsetChanged'
-        QtMocHelpers::SlotData<void(int)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 7 },
         }}),
         // Slot 'onBackgroundImageChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QString &)>(17, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::QString, 3 },
         }}),
     };
@@ -114,10 +131,13 @@ void SettingsPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 1: _t->characterScaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
         case 2: _t->characterYOffsetChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 3: _t->backgroundImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->onCharacterImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 5: _t->onCharacterScaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 6: _t->onCharacterYOffsetChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 7: _t->onBackgroundImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->bgmVolumeChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 5: _t->muteToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 6: _t->bgmTrackChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->onCharacterImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->onCharacterScaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
+        case 9: _t->onCharacterYOffsetChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 10: _t->onBackgroundImageChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -129,6 +149,12 @@ void SettingsPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(int )>(_a, &SettingsPage::characterYOffsetChanged, 2))
             return;
         if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(const QString & )>(_a, &SettingsPage::backgroundImageChanged, 3))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(int )>(_a, &SettingsPage::bgmVolumeChanged, 4))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(bool )>(_a, &SettingsPage::muteToggled, 5))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsPage::*)(const QString & )>(_a, &SettingsPage::bgmTrackChanged, 6))
             return;
     }
 }
@@ -152,14 +178,14 @@ int SettingsPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 11;
     }
     return _id;
 }
@@ -186,5 +212,23 @@ void SettingsPage::characterYOffsetChanged(int _t1)
 void SettingsPage::backgroundImageChanged(const QString & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+}
+
+// SIGNAL 4
+void SettingsPage::bgmVolumeChanged(int _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+}
+
+// SIGNAL 5
+void SettingsPage::muteToggled(bool _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 5, nullptr, _t1);
+}
+
+// SIGNAL 6
+void SettingsPage::bgmTrackChanged(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 6, nullptr, _t1);
 }
 QT_WARNING_POP

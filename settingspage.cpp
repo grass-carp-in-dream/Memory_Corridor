@@ -28,7 +28,7 @@ void SettingsPage::setupUi()
     setupPetSettings();
 
     tabWidget->addTab(backgroundSettingsPage, tr("背景设置"));
-    tabWidget->addTab(soundSettingsPage, tr("声音设置"));
+    tabWidget->addTab(musicSettingsPage, tr("声音设置"));
     tabWidget->addTab(gameSettingsPage, tr("游戏设置"));
     tabWidget->addTab(characterSettingsPage, tr("角色设置"));  // 嵌入角色设置页面
     tabWidget->addTab(petSettingsPage, tr("桌宠设置"));
@@ -48,30 +48,18 @@ void SettingsPage::setupBackgroundSettings()
 
 void SettingsPage::setupSoundSettings()
 {
-    soundSettingsPage = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(soundSettingsPage);
+    musicSettingsPage = new MusicSettingsPage(this);
 
-    QLabel *bgmLabel = new QLabel(tr("背景音乐音量"));
-    QSlider *bgmSlider = new QSlider(Qt::Horizontal);
-    bgmSlider->setRange(0, 100);
-    bgmSlider->setValue(50);
+    // 接收 MusicSettingsPage 的信号，转发给外部
+    connect(musicSettingsPage, &MusicSettingsPage::musicTrackChanged, this, [=](const QString &path) {
+        qDebug() << "[SettingsPage] 转发音乐路径：" << path;
+        emit bgmTrackChanged(path);  // 转发信号
+    });
 
-    QLabel *effectLabel = new QLabel(tr("音效音量"));
-    QSlider *effectSlider = new QSlider(Qt::Horizontal);
-    effectSlider->setRange(0, 100);
-    effectSlider->setValue(50);
-
-    QCheckBox *muteCheckbox = new QCheckBox(tr("静音"));
-
-    layout->addWidget(bgmLabel);
-    layout->addWidget(bgmSlider);
-    layout->addWidget(effectLabel);
-    layout->addWidget(effectSlider);
-    layout->addWidget(muteCheckbox);
-    layout->addStretch();
-
-    // TODO: 连接滑块和复选框信号，调整音量或静音状态
+    connect(musicSettingsPage, &MusicSettingsPage::musicVolumeChanged, this, &SettingsPage::bgmVolumeChanged);
+    connect(musicSettingsPage, &MusicSettingsPage::musicMutedChanged, this, &SettingsPage::muteToggled);
 }
+
 
 void SettingsPage::setupGameSettings()
 {

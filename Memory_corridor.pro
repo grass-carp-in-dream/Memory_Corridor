@@ -1,4 +1,6 @@
-QT       += core gui
+QT += core gui widgets multimedia
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,6 +21,7 @@ SOURCES += \
     gameview.cpp \
     main.cpp \
     mainwindow.cpp \
+    musicsettingspage.cpp \
     photoframewidget.cpp \
     settingspage.cpp
 
@@ -35,6 +38,7 @@ HEADERS += \
     gamepage.h \
     gameview.h \
     mainwindow.h \
+    musicsettingspage.h \
     photoframewidget.h \
     settingspage.h
 

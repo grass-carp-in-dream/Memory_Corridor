@@ -5,6 +5,7 @@
 #include <QTabWidget>
 #include "charactersettingspage.h"  // 引入角色设置界面
 #include "backgroundsettingspage.h" // 引入背景设置界面
+#include "musicsettingspage.h"      // 引入音乐设置界面
 
 
 class SettingsPage : public QWidget
@@ -18,7 +19,12 @@ signals:
     void characterImageChanged(const QString &path);
     void characterScaleChanged(double scale);
     void characterYOffsetChanged(int offset);
+    //背景设置信号
     void backgroundImageChanged(const QString &path);
+    //音乐设置信号
+    void bgmVolumeChanged(int volume);   // 背景音乐音量变化
+    void muteToggled(bool muted);        // 静音状态变化
+    void bgmTrackChanged(const QString &path);  // 设置页面发出的信号
 
 
 private slots:
@@ -32,7 +38,7 @@ private:
     QTabWidget *tabWidget;
 
     BackgroundSettingsPage *backgroundSettingsPage;
-    QWidget *soundSettingsPage;
+    MusicSettingsPage *musicSettingsPage;
     QWidget *gameSettingsPage;
     CharacterSettingsPage *characterSettingsPage;  // 角色设置页面指针
     QWidget *petSettingsPage;
