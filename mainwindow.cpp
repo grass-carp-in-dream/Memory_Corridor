@@ -186,11 +186,16 @@ void MainWindow::onBgmTrackChanged(const QString &path)
         bgmAudioOutput = new QAudioOutput(this);
         bgmPlayer = new QMediaPlayer(this);
         bgmPlayer->setAudioOutput(bgmAudioOutput);
+        bgmPlayer->setLoops(QMediaPlayer::Infinite);  // 设置为无限循环播放
+    } else {
+        bgmPlayer->stop();  // 停止当前音乐（可选，避免冲突）
+        bgmPlayer->setLoops(QMediaPlayer::Infinite);  // 再次设置循环（确保切歌后生效）
     }
 
     bgmPlayer->setSource(QUrl::fromLocalFile(path));
     bgmPlayer->play();
 }
+
 
 
 void MainWindow::onBgmVolumeChanged(int volume)
