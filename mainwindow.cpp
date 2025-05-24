@@ -127,27 +127,18 @@ void MainWindow::showSettingsPage()
         settingsPage->setWindowModality(Qt::ApplicationModal);
         settingsPage->setWindowFlag(Qt::Window);
 
+        // 之前的信号连接...
         connect(settingsPage, &SettingsPage::characterImageChanged, this, &MainWindow::onCharacterImageChanged);
         connect(settingsPage, &SettingsPage::characterScaleChanged, this, &MainWindow::onCharacterScaleChanged);
         connect(settingsPage, &SettingsPage::characterYOffsetChanged, this, &MainWindow::onCharacterYOffsetChanged);
         connect(settingsPage, &SettingsPage::backgroundImageChanged, this, &MainWindow::onBackgroundImageChanged);
-
-
         connect(settingsPage, &SettingsPage::bgmTrackChanged, this, &MainWindow::onBgmTrackChanged);
         connect(settingsPage, &SettingsPage::bgmVolumeChanged, this, &MainWindow::onBgmVolumeChanged);
         connect(settingsPage, &SettingsPage::muteToggled, this, &MainWindow::onBgmMuteToggled);
-        connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status){
-            if (status == QMediaPlayer::EndOfMedia) {
-                qDebug() << "[MainWindow] 检测到 播放结束，重新播放：" ;
-                QString currentPath = bgmPlayer->source().toLocalFile();
-                if (!currentPath.isEmpty()) {
-                    qDebug() << "[MainWindow] 播放结束，重新播放：" << currentPath;
-                    bgmPlayer->setSource(QUrl::fromLocalFile(currentPath));
-                    bgmPlayer->play();
-                }
-            }
-        });
 
+        // 新增角色速度信号连接
+        connect(settingsPage, &SettingsPage::characterSpeedChanged,
+                this, &MainWindow::onCharacterSpeedChanged);
     }
 
     settingsPage->show();
@@ -219,6 +210,12 @@ void MainWindow::onBgmMuteToggled(bool muted)
     }
 }
 
+void MainWindow::onCharacterSpeedChanged(int speed)
+{
+    if (gamePage) {
+        gamePage->onCharacterSpeedChanged(speed);
+    }
+}
 
 
 MainWindow::~MainWindow()

@@ -5,6 +5,7 @@ release/albumpage.o
 release/backgroundsettingspage.o
 release/dateselectdialog.o
 release/gamepage.o
+release/gamesettingspage.o
 release/gameview.o
 release/main.o
 release/mainwindow.o
@@ -19,6 +20,7 @@ release/moc_albumpage.o
 release/moc_backgroundsettingspage.o
 release/moc_dateselectdialog.o
 release/moc_gamepage.o
+release/moc_gamesettingspage.o
 release/moc_gameview.o
 release/moc_mainwindow.o
 release/moc_musicsettingspage.o

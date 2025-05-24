@@ -18,6 +18,7 @@ SOURCES += \
     backgroundsettingspage.cpp \
     dateselectdialog.cpp \
     gamepage.cpp \
+    gamesettingspage.cpp \
     gameview.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     backgroundsettingspage.h \
     dateselectdialog.h \
     gamepage.h \
+    gamesettingspage.h \
     gameview.h \
     mainwindow.h \
     musicsettingspage.h \

@@ -6,6 +6,7 @@
 #include "charactersettingspage.h"  // 引入角色设置界面
 #include "backgroundsettingspage.h" // 引入背景设置界面
 #include "musicsettingspage.h"      // 引入音乐设置界面
+#include "gamesettingspage.h"       // 引入游戏设置界面
 
 
 class SettingsPage : public QWidget
@@ -25,6 +26,9 @@ signals:
     void bgmVolumeChanged(int volume);   // 背景音乐音量变化
     void muteToggled(bool muted);        // 静音状态变化
     void bgmTrackChanged(const QString &path);  // 设置页面发出的信号
+    // 游戏设置信号
+    void characterSpeedChanged(int speed);
+
 
 
 private slots:
@@ -39,8 +43,8 @@ private:
 
     BackgroundSettingsPage *backgroundSettingsPage;
     MusicSettingsPage *musicSettingsPage;
-    QWidget *gameSettingsPage;
-    CharacterSettingsPage *characterSettingsPage;  // 角色设置页面指针
+    GameSettingsPage *gameSettingsPage;
+    CharacterSettingsPage *characterSettingsPage;
     QWidget *petSettingsPage;
 
     void setupUi();

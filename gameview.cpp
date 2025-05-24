@@ -50,7 +50,7 @@ void GameView::initScene()
     scene = new QGraphicsScene(this);
     this->setScene(scene);
 
-    scene->setSceneRect(0, 0, 10000, 600);
+    scene->setSceneRect(0, 0, 50000, 600);
 
     // 背景图平铺
     QPixmap bgPixmap(":/new/prefix1/background5.png");
@@ -476,3 +476,10 @@ void GameView::setBackgroundImage(const QString &path) {
         centerOn(characterItem);
     }
 }
+
+void GameView::setCharacterSpeed(int speed) {
+    qDebug() << "[GameView] setCharacterSpeed called with speed:" << speed;
+    normalSpeed = speed;
+    acceleratedSpeed = speed * 2;  // 可根据需要自行定义加速模式的速度
+}
+

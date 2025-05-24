@@ -63,19 +63,10 @@ void SettingsPage::setupSoundSettings()
 
 void SettingsPage::setupGameSettings()
 {
-    gameSettingsPage = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(gameSettingsPage);
-
-    QLabel *speedLabel = new QLabel(tr("角色移动速度"));
-    QSlider *speedSlider = new QSlider(Qt::Horizontal);
-    speedSlider->setRange(1, 10);
-    speedSlider->setValue(5);
-
-    layout->addWidget(speedLabel);
-    layout->addWidget(speedSlider);
-    layout->addStretch();
-
-    // TODO: 连接滑块信号，调整游戏内角色速度设置
+    gameSettingsPage = new GameSettingsPage(this);
+    connect(gameSettingsPage, &GameSettingsPage::characterSpeedChanged,
+            this, &SettingsPage::characterSpeedChanged);  // 转发信号
+    tabWidget->addTab(gameSettingsPage, "游戏设置");
 }
 
 void SettingsPage::setupCharacterSettings()

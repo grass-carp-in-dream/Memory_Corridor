@@ -26,6 +26,8 @@ public:
 
     // 设置角色缩放比例
     void setCharacterScale(double scale);
+    // 设置角色移动速度
+    void setCharacterSpeed(int speed);
 
     // 设置角色垂直偏移（角色上下浮动）
     void setCharacterYOffset(int offset);

@@ -35,6 +35,7 @@ public slots:
     // 加载相框并显示
     void loadAndDisplayFrames();
     void setBackgroundImage(const QString &path);
+    void onCharacterSpeedChanged(int speed);
 
 private:
     // 游戏视图对象

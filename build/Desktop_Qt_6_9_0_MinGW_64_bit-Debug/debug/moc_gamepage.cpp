@@ -44,7 +44,9 @@ template <> constexpr inline auto GamePage::qt_create_metaobjectdata<qt_meta_tag
         "showSettingsPage",
         "loadAndDisplayFrames",
         "setBackgroundImage",
-        "path"
+        "path",
+        "onCharacterSpeedChanged",
+        "speed"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -57,6 +59,10 @@ template <> constexpr inline auto GamePage::qt_create_metaobjectdata<qt_meta_tag
         // Slot 'setBackgroundImage'
         QtMocHelpers::SlotData<void(const QString &)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 6 },
+        }}),
+        // Slot 'onCharacterSpeedChanged'
+        QtMocHelpers::SlotData<void(int)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 8 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -85,6 +91,7 @@ void GamePage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 1: _t->showSettingsPage(); break;
         case 2: _t->loadAndDisplayFrames(); break;
         case 3: _t->setBackgroundImage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->onCharacterSpeedChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -115,14 +122,14 @@ int GamePage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

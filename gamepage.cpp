@@ -97,3 +97,11 @@ void GamePage::setBackgroundImage(const QString &path)
         gameView->setBackgroundImage(path);  // 将背景图传递给 GameView
     }
 }
+
+void GamePage::onCharacterSpeedChanged(int speed)
+{
+    qDebug() << "[GamePage] onCharacterSpeedChanged called:" << speed;
+    if (gameView) {
+        gameView->setCharacterSpeed(speed);  // 传递速度给游戏视图处理
+    }
+}

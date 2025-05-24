@@ -52,6 +52,8 @@ public slots:
     void onBgmTrackChanged(const QString &path);
     void onBgmVolumeChanged(int volume);
     void onBgmMuteToggled(bool muted);
+    //游戏设置信号
+    void onCharacterSpeedChanged(int speed);
 private:
     QStackedWidget *stackedWidget;   // 管理主菜单、相册、游戏页切换
     QWidget *mainMenuPage;            // 主菜单页面
