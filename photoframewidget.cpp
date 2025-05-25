@@ -229,7 +229,7 @@ QJsonObject PhotoFrameWidget::toJson() const
     QJsonObject obj;
     obj["imagePath"] = imagePath;                          // 图片路径
     obj["description"] = description();                    // 描述文本
-    obj["date"] = date.toString(Qt::ISODate);             // 拍摄日期，ISO格式字符串
+    obj["date"] = date.toString(Qt::ISODate);              // 拍摄日期，ISO格式字符串
     obj["creationTime"] = creationTime.toString(Qt::ISODate); // 创建时间，ISO格式字符串
     return obj;
 }
