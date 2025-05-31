@@ -83,8 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 加载相框数据
     // 加载相框数据
     // 这里的文件路径要改成你们自己保存的json文件的绝对路径
-    bool success = m_photoFrameManager.loadFromFile("C:\\Users\\34893\\Desktop\\test_memory_corridor_data.json");
-
+    bool success = m_photoFrameManager.loadFromFile("D:/程设大作业/Memory_Corridor/json/data.json");
     if (success) {
         qDebug() << "Photo frames loaded successfully!";
         gamePage->loadAndDisplayFrames();
@@ -103,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
     // 播放默认BGM
     // 这里的文件路径要改成你们自己保存的音乐文件的绝对路径
-    QString defaultBgmPath = "C:/Users/34893/Desktop/Memory_Corridor/Memory_corridor/甜美的微笑.mp3";
+    QString defaultBgmPath = "D:/程设大作业/Memory_Corridor/甜美的微笑.mp3";
     onBgmTrackChanged(defaultBgmPath);
 }
 

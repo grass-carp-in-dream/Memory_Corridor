@@ -45,9 +45,9 @@ QString MusicSettingsPage::getTrackPathByName(const QString &name)
 {
     static QMap<QString, QString> trackMap = {
         // 这里的文件路径要改成你们自己保存的音乐文件的绝对路径
-        {"BGM1 - 甜美的微笑", "C:/Users/34893/Desktop/Memory_Corridor/Memory_corridor/甜美的微笑.mp3"},
-        {"BGM2 - 蒙德的一日", "C:/Users/34893/Desktop/Memory_Corridor/Memory_corridor/蒙德的一日.mp3"},
-        {"BGM3 - 风所爱之城", "C:/Users/34893/Desktop/Memory_Corridor/Memory_corridor/风所爱之城.mp3"}
+        {"BGM1 - 甜美的微笑", "D:/程设大作业/Memory_Corridor/甜美的微笑.mp3"},
+        {"BGM2 - 蒙德的一日", "D:/程设大作业/Memory_Corridor/蒙德的一日.mp3"},
+        {"BGM3 - 风所爱之城", "D:/程设大作业/Memory_Corridor/风所爱之城.mp3"}
     };
     return trackMap.value(name, "");
 }

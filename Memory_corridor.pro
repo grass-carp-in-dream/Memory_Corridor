@@ -1,4 +1,4 @@
-QT += core gui widgets multimedia \
+QT += core gui network widgets multimedia \
       charts
 
 
@@ -15,6 +15,7 @@ SOURCES += \
     Charactersettingspage.cpp \
     Flowlayout.cpp \
     PhotoFrameManager.cpp \
+    aichatdialog.cpp \
     albumpage.cpp \
     backgroundsettingspage.cpp \
     dateselectdialog.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     PhotoFrameData.h \
     PhotoFrameItem.h \
     PhotoFrameManager.h \
+    aichatdialog.h \
     albumpage.h \
     backgroundsettingspage.h \
     dateselectdialog.h \
@@ -59,4 +61,5 @@ RESOURCES += \
 DISTFILES +=
 
 FORMS += \
+    aichatdialog.ui \
     yearlyreportdialog.ui
