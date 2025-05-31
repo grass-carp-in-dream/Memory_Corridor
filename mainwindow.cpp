@@ -83,7 +83,8 @@ MainWindow::MainWindow(QWidget *parent)
     // 加载相框数据
     // 加载相框数据
     // 这里的文件路径要改成你们自己保存的json文件的绝对路径
-    bool success = m_photoFrameManager.loadFromFile("C:\\Users\\27124\\Desktop\\data.json");
+    bool success = m_photoFrameManager.loadFromFile("C:\\Users\\34893\\Desktop\\test_memory_corridor_data.json");
+
     if (success) {
         qDebug() << "Photo frames loaded successfully!";
         gamePage->loadAndDisplayFrames();

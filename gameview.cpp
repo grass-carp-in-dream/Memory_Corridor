@@ -314,7 +314,7 @@ void GameView::loadFramesAndDisplay()
 {
     PhotoFrameManager frameManager;
     // 这里的文件路径要改成你们自己保存的json文件的绝对路径
-    if (!frameManager.loadFromFile("C:\\Users\\27124\\Desktop\\data.json")) {
+    if (!frameManager.loadFromFile("C:\\Users\\34893\\Desktop\\test_memory_corridor_data.json")) {
         qDebug() << "加载相框数据失败";
         return;
     }

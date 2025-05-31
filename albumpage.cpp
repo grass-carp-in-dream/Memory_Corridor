@@ -30,7 +30,7 @@ AlbumPage::AlbumPage(QWidget *parent)
     setLayout(mainLayout);
 
     // 这里的文件路径要改成你们自己保存的json文件的绝对路径
-    QString defaultPath = "C:\\Users\\27124\\Desktop";
+    QString defaultPath = "C:\\Users\\34893\\Desktop\\test_memory_corridor_data.json";
     if (QFile::exists(defaultPath)) {
         loadAlbumFromFile(defaultPath);
     }

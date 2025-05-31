@@ -12,6 +12,7 @@ debug/mainwindow.o
 debug/musicsettingspage.o
 debug/photoframewidget.o
 debug/settingspage.o
+debug/yearlyreportdialog.o
 debug/qrc_backgrounds.o
 debug/qrc_characters.o
 debug/moc_Charactersettingspage.o
@@ -26,3 +27,4 @@ debug/moc_mainwindow.o
 debug/moc_musicsettingspage.o
 debug/moc_photoframewidget.o
 debug/moc_settingspage.o
+debug/moc_yearlyreportdialog.o

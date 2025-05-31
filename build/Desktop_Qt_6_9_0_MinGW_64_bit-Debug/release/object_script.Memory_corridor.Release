@@ -12,6 +12,7 @@ release/mainwindow.o
 release/musicsettingspage.o
 release/photoframewidget.o
 release/settingspage.o
+release/yearlyreportdialog.o
 release/qrc_backgrounds.o
 release/qrc_characters.o
 release/moc_Charactersettingspage.o
@@ -26,3 +27,4 @@ release/moc_mainwindow.o
 release/moc_musicsettingspage.o
 release/moc_photoframewidget.o
 release/moc_settingspage.o
+release/moc_yearlyreportdialog.o

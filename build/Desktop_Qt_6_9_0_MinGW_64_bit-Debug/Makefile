@@ -427,8 +427,11 @@ Makefile: ../../Memory_corridor.pro C:/Qt/6.9.0/mingw_64/mkspecs/win32-g++/qmake
 		C:/Qt/6.9.0/mingw_64/mkspecs/features/yacc.prf \
 		C:/Qt/6.9.0/mingw_64/mkspecs/features/lex.prf \
 		../../Memory_corridor.pro \
+		C:/Qt/6.9.0/mingw_64/lib/Qt6Charts.prl \
+		C:/Qt/6.9.0/mingw_64/lib/Qt6OpenGLWidgets.prl \
 		C:/Qt/6.9.0/mingw_64/lib/Qt6Widgets.prl \
 		C:/Qt/6.9.0/mingw_64/lib/Qt6Multimedia.prl \
+		C:/Qt/6.9.0/mingw_64/lib/Qt6OpenGL.prl \
 		C:/Qt/6.9.0/mingw_64/lib/Qt6Gui.prl \
 		C:/Qt/6.9.0/mingw_64/lib/Qt6Network.prl \
 		C:/Qt/6.9.0/mingw_64/lib/Qt6Core.prl \
@@ -794,8 +797,11 @@ C:/Qt/6.9.0/mingw_64/mkspecs/features/exceptions.prf:
 C:/Qt/6.9.0/mingw_64/mkspecs/features/yacc.prf:
 C:/Qt/6.9.0/mingw_64/mkspecs/features/lex.prf:
 ../../Memory_corridor.pro:
+C:/Qt/6.9.0/mingw_64/lib/Qt6Charts.prl:
+C:/Qt/6.9.0/mingw_64/lib/Qt6OpenGLWidgets.prl:
 C:/Qt/6.9.0/mingw_64/lib/Qt6Widgets.prl:
 C:/Qt/6.9.0/mingw_64/lib/Qt6Multimedia.prl:
+C:/Qt/6.9.0/mingw_64/lib/Qt6OpenGL.prl:
 C:/Qt/6.9.0/mingw_64/lib/Qt6Gui.prl:
 C:/Qt/6.9.0/mingw_64/lib/Qt6Network.prl:
 C:/Qt/6.9.0/mingw_64/lib/Qt6Core.prl:
