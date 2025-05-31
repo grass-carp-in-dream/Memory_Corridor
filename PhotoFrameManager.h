@@ -18,6 +18,16 @@ public:
 
     // 新增：保存相框数据到文件
     bool saveToFile(const QString &filePath) const;
+    bool isImportantSingleChar(const QString &word) const;
+
+    struct YearlySummary{
+        int totalFrames;
+        int framesPerMonth[12];  //，每个月的相框数
+        QMap<QString, int > keywordCounts;  //描述中的关键词
+        QVector<QString> mostUsedImages;    //最常用的图片路径
+    };
+
+    YearlySummary getYearlySummary(int year) const;
 
 private:
     QVector<PhotoFrameData> m_frames;  // 存储所有相框数据

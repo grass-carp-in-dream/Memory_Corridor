@@ -80,3 +80,32 @@ const QVector<PhotoFrameData>& PhotoFrameManager::getAllFrames() const
 {
     return m_frames;
 }
+
+
+
+//*****************补充*****************//
+PhotoFrameManager::YearlySummary PhotoFrameManager::getYearlySummary(int year) const
+{
+    YearlySummary summary;
+    summary.totalFrames = 0;
+    memset(summary.framesPerMonth, 0, sizeof(summary.framesPerMonth));
+
+    // 清空关键词统计（改用描述统计）
+    summary.keywordCounts.clear();
+
+    for (const PhotoFrameData &frame : m_frames) {
+        if (frame.date.year() != year) {
+            continue;
+        }
+
+        summary.totalFrames++;
+        summary.framesPerMonth[frame.date.month() - 1]++;
+
+        // 直接统计完整描述出现的次数（不去重，不限制）
+        if (!frame.description.isEmpty()) {
+            summary.keywordCounts[frame.description]++;
+        }
+    }
+
+    return summary;
+}

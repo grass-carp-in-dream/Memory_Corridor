@@ -53,6 +53,7 @@ public slots:
     void onBgmMuteToggled(bool muted);
     //游戏设置信号
     void onCharacterSpeedChanged(int speed);
+    void showYearlyReport();
 private:
     QStackedWidget *stackedWidget;   // 管理主菜单、相册、游戏页切换
     QWidget *mainMenuPage;            // 主菜单页面
@@ -73,6 +74,8 @@ private:
     QSize normalWindowSize;           // 记录窗口非全屏大小，方便切换
     QMediaPlayer *bgmPlayer = nullptr;  // 音乐播放器
     QAudioOutput* bgmAudioOutput = nullptr;// 音量设置器
+
+
 };
 
 #endif // MAINWINDOW_H

@@ -1,4 +1,5 @@
-QT += core gui widgets multimedia
+QT += core gui widgets multimedia \
+      charts
 
 
 
@@ -24,7 +25,8 @@ SOURCES += \
     mainwindow.cpp \
     musicsettingspage.cpp \
     photoframewidget.cpp \
-    settingspage.cpp
+    settingspage.cpp \
+    yearlyreportdialog.cpp
 
 HEADERS += \
     Charactersettingspage.h \
@@ -42,7 +44,8 @@ HEADERS += \
     mainwindow.h \
     musicsettingspage.h \
     photoframewidget.h \
-    settingspage.h
+    settingspage.h \
+    yearlyreportdialog.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -54,3 +57,6 @@ RESOURCES += \
     characters.qrc
 
 DISTFILES +=
+
+FORMS += \
+    yearlyreportdialog.ui

@@ -6,9 +6,11 @@
 #include <QFont>
 #include <QResizeEvent>
 #include <QDebug>
+#include <QMessageBox>
 #include "albumpage.h"
 #include "settingspage.h"
 #include "PhotoFrameManager.h"
+#include "yearlyreportdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -59,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(albumButton, &QPushButton::clicked, this, [=]() { stackedWidget->setCurrentIndex(1); });
     connect(albumPage, &AlbumPage::backToMainRequested, this, [=]() { stackedWidget->setCurrentIndex(0); });
     connect(startButton, &QPushButton::clicked, this, [=]() { stackedWidget->setCurrentIndex(2); });
+    connect(summaryButton, &QPushButton::clicked, this, &MainWindow::showYearlyReport);
 
     // 切换页面时处理窗口大小和焦点
     connect(stackedWidget, &QStackedWidget::currentChanged, this, [=](int index) {
@@ -80,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 加载相框数据
     // 加载相框数据
     // 这里的文件路径要改成你们自己保存的json文件的绝对路径
-    bool success = m_photoFrameManager.loadFromFile("C:/Users/34893/Desktop/test_memory_corridor_data.json");
+    bool success = m_photoFrameManager.loadFromFile("C:\\Users\\27124\\Desktop\\data.json");
     if (success) {
         qDebug() << "Photo frames loaded successfully!";
         gamePage->loadAndDisplayFrames();
@@ -146,6 +149,23 @@ void MainWindow::showSettingsPage()
     settingsPage->activateWindow();
 }
 
+void MainWindow::showYearlyReport()
+{
+    qDebug() << "Attempting to show yearly report";
+
+    if (m_photoFrameManager.getAllFrames().isEmpty()) {
+        qDebug() << "No frames available";
+        QMessageBox::warning(this, "警告", "没有可用的相框数据！");
+        return;
+    }
+
+    qDebug() << "Creating dialog with" << m_photoFrameManager.getAllFrames().size() << "frames";
+    YearlyReportDialog *dialog = new YearlyReportDialog(m_photoFrameManager, this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose); // 自动删除
+    dialog->show(); // 使用 show() 而不是 exec() 测试
+    dialog->raise();
+    dialog->activateWindow();
+}
 
 
 void MainWindow::onCharacterImageChanged(const QString &imagePath)
