@@ -33,19 +33,6 @@
 ----------
 
 ## 二、项目模块与类设计细节
-### 模块关系图
-主窗口 MainWindow
-   ├── 游戏页 GamePage
-   ├── 设置页 SettingsPage
-   │     ├── 角色设置页 CharacterSettingsPage
-   │     ├── 背景设置页 BackgroundSettingsPage
-   │     ├── 音效设置页 SoundSettingsPage
-   │     └── 游戏设置页 GameSettingsPage
-   └── 相册页 AlbumPage
-         ├── 相框管理器 PhotoFrameManager
-         └── 相框控件 PhotoFrameWidget
-
-
 
 项目采用模块化设计，主要模块和核心类包括：
 
